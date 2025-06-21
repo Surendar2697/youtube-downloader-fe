@@ -4,7 +4,8 @@ document.getElementById('download-form').addEventListener('submit', async (e) =>
     const format = document.getElementById('format').value;
     const status = document.getElementById('status');
 
-    status.textContent = 'Processing...';
+    status.textContent = 'Processing your download...';
+    status.style.color = '#333';
 
     try {
         const response = await fetch('https://youtube-downloader-be-bbrk.onrender.com/api/download', {
@@ -13,20 +14,30 @@ document.getElementById('download-form').addEventListener('submit', async (e) =>
             body: JSON.stringify({ url, format })
         });
 
-        if (!response.ok) throw new Error('Download failed');
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || `Download failed (HTTP ${response.status})`);
+        }
 
         const blob = await response.blob();
+        const contentDisposition = response.headers.get('Content-Disposition');
+        const filename = contentDisposition
+            ? contentDisposition.split('filename=')[1]?.replace(/"/g, '') || 'download'
+            : 'download';
+        
         const downloadUrl = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = downloadUrl;
-        a.download = response.headers.get('Content-Disposition')?.split('filename=')[1] || 'download';
+        a.download = filename;
         document.body.appendChild(a);
         a.click();
         a.remove();
         window.URL.revokeObjectURL(downloadUrl);
 
-        status.textContent = 'Download started!';
+        status.textContent = 'Download started successfully!';
+        status.style.color = '#2ecc71';
     } catch (error) {
         status.textContent = `Error: ${error.message}`;
+        status.style.color = '#e74c3c';
     }
 });
