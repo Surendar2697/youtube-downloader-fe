@@ -7,7 +7,7 @@ document.getElementById('download-form').addEventListener('submit', async (e) =>
     status.textContent = 'Processing...';
 
     try {
-        const response = await fetch('YOUR_RENDER_BACKEND_URL/api/download', {
+        const response = await fetch('https://youtube-downloader-be-bbrk.onrender.com/api/download', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ url, format })
