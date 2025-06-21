@@ -1,25 +1,32 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
+    color: #333;
 }
 
 .container {
     background: white;
     padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     width: 90%;
-    max-width: 500px;
+    max-width: 600px;
     text-align: center;
 }
 
 h1 {
-    color: #333;
+    color: #ff6b6b;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+p {
+    color: #555;
     margin-bottom: 1.5rem;
 }
 
@@ -32,13 +39,15 @@ form {
 input, select, button {
     padding: 0.8rem;
     border: 2px solid #4ecdc4;
-    border-radius: 5px;
+    border-radius: 8px;
     font-size: 1rem;
+    transition: border-color 0.3s, transform 0.2s;
 }
 
 input:focus, select:focus {
     outline: none;
     border-color: #ff6b6b;
+    transform: scale(1.02);
 }
 
 button {
@@ -46,24 +55,39 @@ button {
     color: white;
     border: none;
     cursor: pointer;
-    transition: background 0.3s;
+    font-weight: bold;
 }
 
 button:hover {
     background: #ff8787;
+    transform: scale(1.05);
 }
 
 #status {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
+    font-size: 1rem;
     color: #333;
 }
 
 /* Responsive design */
 @media (max-width: 600px) {
     .container {
-        padding: 1rem;
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    h1 {
+        font-size: 1.5rem;
     }
     input, select, button {
         font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .container {
+        padding: 1rem;
+    }
+    h1 {
+        font-size: 1.2rem;
     }
 }
