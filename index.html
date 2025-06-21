@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Downloader</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>YouTube Downloader</h1>
+        <form id="download-form">
+            <input type="url" id="youtube-url" placeholder="Enter YouTube URL" required>
+            <select id="format" required>
+                <option value="" disabled selected>Select format</option>
+                <option value="1">Low Quality Video (MP4)</option>
+                <option value="2">Medium Quality Video (MP4, 480p)</option>
+                <option value="3">High Quality Video (MP4, Best)</option>
+                <option value="4">MP3 Audio</option>
+            </select>
+            <button type="submit">Download</button>
+        </form>
+        <div id="status"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
